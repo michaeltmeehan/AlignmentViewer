@@ -18,6 +18,12 @@ describe("FASTA aligned sequence parsing", () => {
     );
   });
 
+  it("rejects a FASTA record with a header but no sequence", () => {
+    expect(() => parseAlignedFasta(">seq1\nACGT\n>seq2\n")).toThrow(
+      /non-empty sequence content/i
+    );
+  });
+
   it("preserves sequence names and ids", () => {
     const alignment = parseAlignedFasta(
       ">seq1 Human sample\nAC-GT\n>seq2 Mouse sample\nA--GT"

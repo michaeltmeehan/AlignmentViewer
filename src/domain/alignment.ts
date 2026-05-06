@@ -17,6 +17,10 @@ export function validateAlignment(alignment: Alignment): void {
     if (record.id.trim().length === 0) {
       throw new Error("Each sequence must have a non-empty id.");
     }
+
+    if (record.sequence.length === 0) {
+      throw new Error("Each sequence must have non-empty sequence content.");
+    }
   }
 
   const expectedLength = alignment.sequences[0].sequence.length;
